@@ -1,0 +1,30 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/style/myprofile.css">
+  <link rel="stylesheet" href="/style/hariom.css">
+  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>My Profile </title>
+</head>
+<body>
+  <!-- Include header partial -->
+  <%- include('partials/header') %>
+
+  
+      <div class="button-nav">
+        <!-- <img src="img/fcclogo.png" alt="" style="height: 25px;"> -->
+        <a href="/" ><i class="fa-solid fa-house" style="margin-left: 30px; color: #ffffff; margin-left: 5px;"></i>Home</a>
+        <a href="/zone" style="color: #ffffff; "><i class="fa-solid fa-location-dot"  style="color: #ffffff; margin-right: 5px;"></i>Zone </a>
+        <a href="/learn" style="color: #ffffff; "><i class="fa-solid fa-book"  style="color: #ffffff; margin-right: 5px;"></i> Learn</a>
+        <a href="/myprofile" style="color: #ffffff; "><i class="fa-solid fa-user"  style="color: #ffffff; margin-right: 5px;"> Me</i> </a>
+        </div>
+
+        
+  <div style="padding-bottom: 1500px;"></div>
+  <!-- Include footer partial -->
+  <%- include('partials/footer') %>
+</body>
+<script src="https://kit.fontawesome.com/90e7e642fb.js" crossorigin="anonymous"></script>
+</html>

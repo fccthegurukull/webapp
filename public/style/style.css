@@ -1,0 +1,233 @@
+
+.button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #fff; /* Add background color if needed */
+  padding: 10px; /* Add padding if needed */
+  border-top: 1px solid #ccc; /* Add a border if needed */
+  z-index: 1000; /* Set a higher z-index to make sure it appears above other elements */
+}
+.nav-button {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff; 
+  background-color: #007BFF; 
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+} 
+  /* Mobile Styles */
+@media only screen and (max-width: 600px) {
+  .button-container {
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    width: 90%;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+  }
+
+  .nav-button {
+    display: block;
+    /* width: 100%; */
+    /* padding: 10px; */
+    margin-bottom: 10px;
+    /* padding-right: 15px; */
+    text-align: center;
+    text-decoration: none;
+    color: #fff; /* Change color as needed */
+    background-color: #00308F; /* Change background color as needed */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-button:hover {
+    background-color: #4f008f; /* Change hover background color as needed */
+  }
+}
+
+.p-test {
+  color: beige;
+}
+
+/* ................ Zone Survivers ............... */
+
+.btn-primary {
+  /* Add your primary button styles here */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: not-allowed;
+  margin-left: 10px;
+  /* You can add more styling as needed */
+}
+
+/* Add animation styles for the spinner pulse effect */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.spinner-grow {
+  /* Add spinner styles here */
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: text-bottom;
+  border: 0.2em solid currentColor;
+  border-right: 0.2em solid transparent;
+  border-radius: 50%;
+  animation: pulse 0.5s infinite;
+}
+
+/* Visually hidden class for accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+
+.zone-type-section {
+  background-color: #311c63;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.button-nav {
+    background-color: #351e98;
+    width: 100%;
+    height: 40px;
+  
+      display: flex;
+      justify-content: left;
+      align-items: center;
+    position: fixed;
+    width: 100%;
+    bottom: 5px;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+
+
+/* 
+  ////////////////////// */
+
+  .button-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .button-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Adjust the margin as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+  }
+
+  .button-nav a i {
+    margin-right: 5px;
+  }
+
+
+  /* //////////// Creat Account BTN CSS ///////////// */
+
+
+  .button-creat-ac {
+    all: unset;
+    /* display: flex; */
+    align-items: center;
+    position: relative;
+    padding: 0.6em 2em;
+    border: rgb(4, 0, 250) solid 0.15em;
+    border-radius: 0.25em;
+    color: rgb(0, 37, 250);
+    font-size: 1.5em;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 300ms, color 300ms;
+    user-select: none;
+    margin-top: 20px;
+    margin-left: 60px;
+  }
+  
+  .button-creat-ac p {
+    z-index: 1;
+  }
+  
+  .button-creat-ac:hover {
+    color: #212121;
+  }
+  
+  .button-creat-ac:active {
+    border-color: rgb(0, 19, 128);
+  }
+  
+  .button-creat-ac::after, .button-creat-ac::before {
+    content: "";
+    position: absolute;
+    width: 7em;
+    aspect-ratio: 1;
+    background: rgb(21, 30, 114);
+    opacity: 50%;
+    border-radius: 50%;
+    transition: transform 500ms, background 300ms;
+  }
+  
+  .button-creat-ac::before {
+    left: 0;
+    transform: translateX(-8em);
+  }
+  
+  .button-creat-ac-creat-ac::after {
+    right: 0;
+    transform: translateX(8em);
+  }
+  
+  .button-creat-ac:hover:before {
+    transform: translateX(-1em);
+  }
+  
+  .button-creat-ac:hover:after {
+    transform: translateX(1em);
+  }
+  
+  .button-creat-ac:active:before,
+  .button-creat-ac:active:after {
+    background: rgb(98, 0, 128);
+  }

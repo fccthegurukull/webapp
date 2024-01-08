@@ -1,0 +1,86 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/style/myprofile.css">
+  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>My Profile </title>
+</head>
+<body>
+  <!-- Include header partial -->
+  <%- include('partials/header') %>
+<!-- 
+  <h2 style="margin-top: 20px; margin-left: 20px;">Register Your Account</h2>
+  <a href="https://fccthegurukul.in/registration"><h3 style="margin-left: 40px;">Click To Register </h3> -->
+
+    
+  <div class="card" aria-hidden="true" style="margin-top: 20px;">
+    <div class="card-body">
+      <h5 class="card-title placeholder-glow">
+        <span class="placeholder col-6"></span>
+      </h5>
+      <p class="card-text placeholder-glow">
+        <span class="placeholder col-7"></span>
+        <span class="placeholder col-4"></span>
+        <span class="placeholder col-4"></span>
+        <span class="placeholder col-6"></span>
+        <span class="placeholder col-8"></span>
+      </p>
+      <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+    </div>
+  </div>
+
+<span style="margin-left: 10px;" class="placeholder col-6"></span>
+<span style="margin-left: 10px;" class="placeholder w-75"></span>
+<span style="margin-left: 10px;" class="placeholder" style="width: 25%;"></span>
+
+<span class="placeholder col-12 placeholder-lg"></span>
+<span class="placeholder col-12"></span>
+<span class="placeholder col-12 placeholder-sm"></span>
+<span class="placeholder col-12 placeholder-xs"></span>
+
+<div class="card" aria-hidden="true" style="margin-top: 20px;">
+  <div class="card-body">
+    <h5 class="card-title placeholder-glow">
+      <span class="placeholder col-6"></span>
+    </h5>
+    <p class="card-text placeholder-glow">
+      <span class="placeholder col-7"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-6"></span>
+      <span class="placeholder col-8"></span>
+    </p>
+    <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+  </div>
+</div>
+
+<span style="margin-left: 10px;" class="placeholder col-6"></span>
+<span style="margin-left: 10px;" class="placeholder w-75"></span>
+<span style="margin-left: 10px;" class="placeholder" style="width: 25%;"></span>
+
+  <a href="https://fccthegurukul.in/registration"> <button type="button" class="btn btn-dark" style="margin-left: -20px; margin-top: 50px;" >Creat Account to Explore Updated info..</button></a>
+  
+  <a href="https://fccthegurukul.in/registration">
+  <button class="button-creat-ac">
+    <p>Creat Account</p>
+  </button>
+  </a>
+
+  
+      <div class="button-nav">
+        <!-- <img src="img/fcclogo.png" alt="" style="height: 25px;"> -->
+        <a href="/" style="margin-left: -20px;"><i class="fa-solid fa-house" style="margin-left: 30px; color: #ffffff;"></i>Home</a>
+        <a href="/zone" style="color: #ffffff; "><i class="fa-solid fa-location-dot"  style="color: #ffffff; margin-right: 5px;"></i>Zone </a>
+        <a href="/learn" style="color: #ffffff; "><i class="fa-solid fa-book"  style="color: #ffffff; margin-right: 5px;"></i> Learn</a>
+        <a href="/myprofile" style="color: #ffffff; "><i class="fa-solid fa-"  style="color: #ffffff; margin-right: 5px;"> Me</i> </a>
+        </div>
+
+        
+  <div style="padding-bottom: 1500px;"></div>
+  <!-- Include footer partial -->
+  <%- include('partials/footer') %>
+</body>
+<script src="https://kit.fontawesome.com/90e7e642fb.js" crossorigin="anonymous"></script>
+</html>
