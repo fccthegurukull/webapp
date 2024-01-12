@@ -1,9 +1,19 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #392467 !important;
+  color: #fff !important;
 }
 
-.container {
+h1 {
+  font-size: 20px !important;
+  
+}
 
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
 }
 
 .card {
@@ -66,4 +76,132 @@ body {
 
 .button-nav a i {
   margin-right: 5px;
+}
+
+/* //////////////////// new code  ///////////////////////////////// */
+
+.today h2 {
+  font-size: 18px;
+  color: red;
+  margin-left: 10px;
+  padding-bottom: 5px;
+}
+
+#box {
+  height: auto;
+  width: 95%;
+  margin-left: 10px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: inset 5px 5px 10px #666666,
+              inset -5px -5px 10px #ffffff;
+}
+
+.sevenday-section h2 {
+  font-size: 18px;
+  color: red;
+  margin-left: 10px;
+  padding-bottom: 5px;
+}
+
+/* 6 Box  */
+
+.my-achivement {
+  text-align: center;
+  margin: 20px;
+  position: relative; /* Added positioning for relative positioning */
+}
+
+.my-achivement h2 {
+  color: #fff; /* Text color */
+}
+
+.my-achivement img {
+  max-width: 50px; /* Set the maximum width for the image */
+  height: auto;
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.my-achivement .achievement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-achivement button {
+  margin-top: 10px; /* Adjust the margin as needed */
+  font-size: 14px; /* Adjust the font size for the button */
+  border-radius: 4px;
+}
+
+.my-achivement button:hover {
+  background-color: #45a049; /* Darker green color on hover, you can change it */
+}
+
+/* Bootstrap styles */
+.my-achivement button {
+  padding: 8px 16px; /* Adjust the padding for the button */
+}
+
+.my-achivement button.btn-success {
+  background-color: #28a745; /* Bootstrap success color, you can change it */
+  border: none;
+  color: #fff; /* Text color */
+}
+
+.my-achivement button.btn-success:hover {
+  background-color: #218838; /* Darker green color on hover, you can change it */
+}
+
+
+/* Profile img, badge, backround */
+
+.profile-background {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex; /* Use flexbox to arrange elements side by side */
+  align-items: center; /* Center elements vertically */
+}
+
+.profile-info {
+  display: flex; /* Use flexbox for the column layout */
+  flex-direction: column; /* Stack elements in a column */
+  margin-left: 20px; /* Adjusted margin for space between columns */
+}
+
+.my-dp {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.rating {
+  margin-top: 20px;
+}
+
+.rating h2 {
+  color: #ffffff;
+}
+
+.rating-value {
+  font-size: 18px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+img[src="img/check.png"] {
+  width: 30px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: -20px;
 }

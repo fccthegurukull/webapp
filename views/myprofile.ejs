@@ -11,29 +11,92 @@
   <!-- Include header partial -->
   <%- include('partials/header') %>
 
-
-
-  <!-- myprofile.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile</title>
-</head>
-<body>
-  <h1>Hello, <%= user && user.name %>!</h1>
-  <p>Email: <%= user && user.email %></p>
+  <!-- <h1>Hello, <%= user && user.name %>!</h1>
+  <p>Email: <%= user && user.email %></p> -->
   <!-- Other profile details go here -->
-  
+
+
+
+  <div class="profile-backround">
+
+  </div>
+<!-- 
+  <img class="my-dp" src="img/hariom.jpg" alt="" style="margin-left: 40px; margin-top: -20px;">
+  <img src="img/check.png" alt="">
+  <h1 style="margin-left: 35px; margin-top: 5px;">Hariom Kumar</h1>
+
+  <div class="rating">
+    <h2>Rating</h2>
+    5/3.2 
+  </div> -->
+
+  <div class="my-achivement">
+    <img src="img/trophy.svg" alt=""> <h2>My Achivement</h2> 
+<button>Test Ranker <a href="#" class="badge badge-success">0</a></button>
+<button>10 Day Striker <a href="#" class="badge badge-success">0</a></button>
+<button>Quiz King <a href="#" class="badge badge-success">0</a></button>
+<button>Best Zone Survivor <a href="#" class="badge badge-success">0</a></button>
+<button>Leader-Board Hunter <a href="#" class="badge badge-success">0</a></button>
+  </div>
+
+  <div class="alert alert-danger" role="alert">
+    The data shown here is given for preview only.
+  </div>
+
+  <div id="box" class="today">
+      <h1 style="color: rgb(0, 0, 0); font-size: 18px; margin-left: 10px; padding-top: 10px;">Today</h1>
+      <h2 style="color: #251515;">Daily Target &#9746;</h2>
+      <h2 style="color: green;">FCC Group Study &#10004;</h2
+      <span> </span>
+      <h2  style="color: green;">Group Discuss &#10004;</h2>
+      <h2 style="color: #251515;">Full Attendence &#9746; </h2>
+  </div>
+
+  <div id="box" class="sevenday-section">
+    <h1 style="color: rgb(0, 78, 78); font-size: 18px; margin-left: 10px; padding-top: 10px;">Previous  7 Day Activity</h1>
+    <h2 style="color: rgb(0, 0, 0);">Attendence</h2>
+    <h2 style="color: rgb(0, 114, 76)(0, 0, 0);">4 Day Attende, <span style="color: red;">3 Day Gap</span></h2>
+
+    <h2 style="color: rgb(109, 0, 0);">Quiz/Test</h2>
+    <h2 style="color: rgb(0, 0, 0);">+5% incress Accuracy </h2>
+  </div>
+
+  <div id="box" class="sevenday-section">
+    <h1 style="color: rgb(0, 78, 78); font-size: 18px; margin-left: 10px; padding-top: 10px;">Zone View</h1>
+    <h2 style="color: rgb(0, 0, 0);">My Zone</h2>
+    <h2 style="color: rgb(145, 0, 0)(0, 0, 0);"><a href="#" class="badge badge-primary">Blue Zone</a></h2>
+
+    <h2 style="color: rgb(109, 0, 0);">Upgrade <a href="#" class="badge badge-success">Green Zone</a></h2>
+    <h2 style="color: rgb(0, 0, 0);">Complete Task >></h2>
+  </div>
+
+  <div id="box" class="sevenday-section">
+    <h1 style="color: rgb(0, 78, 13); font-size: 18px; margin-left: 10px; padding-top: 10px;">Leader Board</h1>
+    <h2 style="color: rgb(0, 0, 0);">My Position</h2>
+    <h2 style="color: rgb(145, 0, 0)(0, 0, 0);">All Over | <a href="#" class="badge badge-primary">17th</a></h2>
+
+    <h2 style="color: rgb(109, 0, 0);">in My Class | <a href="#" class="badge badge-success">8th</a></h2>
+    <h2 style="color: rgb(0, 0, 0);"> to Upgrade > <a href="#" class="badge badge-dark">New Position</a>
+    </h2>
+  </div>
+
+    
+  <div style="padding-bottom: 1500px;"></div>
+    <!-- Include footer partial -->
+    <%- include('partials/footer') %>
 </body>
 </html>
 
 
         
-  <div style="padding-bottom: 1500px;"></div>
-  <!-- Include footer partial -->
-  <%- include('partials/footer') %>
+
+<div class="button-nav">
+  <!-- <img src="img/fcclogo.png" alt="" style="height: 25px;"> -->
+  <a href="/" ><i class="fa-solid fa-house" style="margin-left: 30px; color: #ffffff; margin-left: 5px;"></i>Home</a>
+  <a href="/zone" style="color: #ffffff; "><i class="fa-solid fa-location-dot"  style="color: #ffffff; margin-right: 5px;"></i>Zone </a>
+  <a href="/learn" style="color: #ffffff; "><i class="fa-solid fa-book"  style="color: #ffffff; margin-right: 5px;"></i> Learn</a>
+  <a href="/myprofile" style="color: #ffffff; "><i class="fa-solid fa-user"  style="color: #ffffff; margin-right: 5px;"> Me</i> </a>
+  </div>
 
 </body>
 

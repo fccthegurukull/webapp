@@ -6,6 +6,8 @@ const initializePassport = require("./passport-config");
 const flash = require("express-flash");
 const session = require('express-session'); // Declare session only once
 const methodOverride = require("method-override");
+const logger = require('./logger');
+
 const port = 5500;
 
 initializePassport(
@@ -44,24 +46,32 @@ app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
 }))
 
 // Configuring the register post functionality
+// Configuring the register post functionality
 app.post("/register", checkNotAuthenticated, async (req, res) => {
+  try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      users.push({
+          id: Date.now().toString(), 
+          name: req.body.name,
+          email: req.body.email,
+          password: hashedPassword,
+      });
 
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(), 
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword,
-        })
-        console.log(users); // Display newly registered in the console
-        res.redirect("/login")
-        
-    } catch (e) {
-        console.log(e);
-        res.redirect("/register")
-    }
-})
+      // Log user registration data
+      logger.info(`User registered: ${JSON.stringify({
+          id: req.body.id,
+          name: req.body.name,
+          email: req.body.email,
+          password: hashedPassword, // Always hash passwords before logging!
+      })}`);
+
+      console.log(users); // Display newly registered in the console
+      res.redirect("/login");
+  } catch (e) {
+      console.log(e);
+      res.redirect("/register");
+  }
+});
 
 // Routes
 app.get('/', checkAuthenticated, (req, res) => {
@@ -75,6 +85,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render("register.ejs")
 })
+
 // End Routes
 
 // app.delete('/logout', (req, res) => {
@@ -224,7 +235,8 @@ app.get('/guest2', (req, res) => {
   res.render('guests/guest2/guest2', { message: 'Hello, Guest 2!' });
 });
 
+
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  logger.info(`Server is running at http://localhost:${port}`);
 });
