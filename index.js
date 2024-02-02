@@ -74,9 +74,9 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 });
 
 // Routes
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render("index.ejs", {name: req.user.name})
-})
+// app.get('/', checkAuthenticated, (req, res) => {
+//     res.render("index.ejs", {name: req.user.name})
+// })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render("login.ejs")
@@ -86,12 +86,6 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render("register.ejs")
 })
 
-// End Routes
-
-// app.delete('/logout', (req, res) => {
-//     req.logOut()
-//     res.redirect('/login')
-//   })
 
 app.delete("/logout", (req, res) => {
     req.logout(req.user, err => {
@@ -215,10 +209,53 @@ app.get('/subscriber1', (req, res) => {
   res.render('subscriber/subscriber1', { pageTitle: 'Subscriber 1' });
 });
 
-// Route for Hariom Kumar's page
+// teaches
 app.get('/hariom', (req, res) => {
   res.render('teachers/hariom-kumar/hariom', { pageTitle: "Hariom Kumar's Page" });
 });
+
+app.get('/arjun', (req, res) => {
+  res.render('teachers/arjun-kumar/arjun', { pageTitle: "Arjun Kumar, Page" });
+});
+
+app.get('/vikash', (req, res) => {
+  res.render('teachers/vikash', { pageTitle: "Vikash Kumar, Page" });
+});
+
+app.get('/nagendra', (req, res) => {
+  res.render('teachers/nagendra', { pageTitle: "Nagendra Kumar, Page" });
+});
+
+app.get('/chhathu', (req, res) => {
+  res.render('teachers/chhathu', { pageTitle: "Chhathu Kumar, Page" });
+});
+
+app.get('/ranjeet', (req, res) => {
+  res.render('teachers/ranjeet', { pageTitle: "Ranjeet Kumar, Page" });
+});
+
+app.get('/shyam', (req, res) => {
+  res.render('teachers/shyam', { pageTitle: "Shyam Kumar, Page" });
+});
+
+app.get('/pappu', (req, res) => {
+  res.render('teachers/pappu', { pageTitle: "Vikash Kumar, Page" });
+});
+
+app.get('/manish', (req, res) => {
+  res.render('teachers/manish', { pageTitle: "Manish Kumar, Page" });
+});
+
+app.get('/pawan', (req, res) => {
+  res.render('teachers/pawan', { pageTitle: "Pawan Kumar, Page" });
+});
+
+app.get('/shani', (req, res) => {
+  res.render('teachers/shani', { pageTitle: "Shani Kumar, Page" });
+});
+
+// Teachers Page ended
+
 
 // Route for Parents page
 app.get('/parents', (req, res) => {
@@ -240,3 +277,5 @@ app.get('/guest2', (req, res) => {
 app.listen(port, () => {
   logger.info(`Server is running at http://localhost:${port}`);
 });
+
+console.log(users)

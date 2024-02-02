@@ -1,0 +1,335 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>My Profile </title>
+</head>
+<style>
+  body {
+  background-color: #392467 !important;
+  color: #fff !important;
+}
+
+h1 {
+  font-size: 20px !important;
+  
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.creat-buttom {
+  margin-top: 10px;
+}
+
+.upload-doc {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* Styles for the Image */
+.img-logo {
+  max-width: 100%; /* Make sure the image doesn't exceed its container */
+  height: auto; /* Maintain aspect ratio */
+  border: 2px solid #ddd; /* Add a border */
+  border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+  margin-bottom: 10px;
+}
+
+.button-nav {
+  background-color: #351e98;
+  width: 100%;
+  height: 40px;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  position: fixed;
+  width: 100%;
+  bottom: 5px;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* 
+////////////////////// */
+
+.button-nav {
+  display: flex;
+  align-items: center;
+}
+
+.button-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust the margin as needed */
+  padding: 10px; /* Adjust the padding as needed */
+  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+}
+
+.button-nav a i {
+  margin-right: 5px;
+}
+
+/* //////////////////// new code  ///////////////////////////////// */
+
+.today h2 {
+  font-size: 18px;
+  color: red;
+  margin-left: 10px;
+  padding-bottom: 5px;
+}
+
+#box {
+  height: auto;
+  width: 95%;
+  margin-left: 10px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: inset 5px 5px 10px #666666,
+              inset -5px -5px 10px #ffffff;
+}
+
+.sevenday-section h2 {
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  margin-left: 10px;
+  padding-bottom: 5px;
+}
+
+/* 6 Box  */
+
+.my-achivement {
+  text-align: center;
+  margin: 20px;
+  position: relative; /* Added positioning for relative positioning */
+}
+
+.my-achivement h2 {
+  color: #fff; /* Text color */
+}
+
+.my-achivement img {
+  max-width: 50px; /* Set the maximum width for the image */
+  height: auto;
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.my-achivement .achievement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-achivement button {
+  margin-top: 10px; /* Adjust the margin as needed */
+  font-size: 14px; /* Adjust the font size for the button */
+  border-radius: 4px;
+}
+
+.my-achivement button:hover {
+  background-color: #45a049; /* Darker green color on hover, you can change it */
+}
+
+/* Bootstrap styles */
+.my-achivement button {
+  padding: 8px 16px; /* Adjust the padding for the button */
+}
+
+.my-achivement button.btn-success {
+  background-color: #28a745; /* Bootstrap success color, you can change it */
+  border: none;
+  color: #fff; /* Text color */
+}
+
+.my-achivement button.btn-success:hover {
+  background-color: #218838; /* Darker green color on hover, you can change it */
+}
+
+
+/* Profile img, badge, backround */
+
+.profile-background {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex; /* Use flexbox to arrange elements side by side */
+  align-items: center; /* Center elements vertically */
+}
+
+.profile-info {
+  display: flex; /* Use flexbox for the column layout */
+  flex-direction: column; /* Stack elements in a column */
+  margin-left: 20px; /* Adjusted margin for space between columns */
+}
+
+.my-dp {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.rating {
+  margin-top: 20px;
+}
+
+.rating h2 {
+  color: #ffffff;
+}
+
+.rating-value {
+  font-size: 18px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+img[src="img/check.png"] {
+  width: 30px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: -20px;
+}
+
+.sub-img img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+</style>
+<body>
+<!-- Include header partial -->
+
+
+
+  <div class="profile-backround">
+
+  </div>
+<!-- 
+  <img class="my-dp" src="img/hariom.jpg" alt="" style="margin-left: 40px; margin-top: -20px;">
+  <img src="img/check.png" alt="">
+  <h1 style="margin-left: 35px; margin-top: 5px;">Hariom Kumar</h1>
+
+  <div class="rating">
+    <h2>Rating</h2>
+    5/3.2 
+  </div> -->
+  <div class="sub-img" style="background-color: #b0ffb7;">
+    <img style="display: flex;" src="img/vikash.jpg" alt="">
+    <h1 style="color: #251515; font-size: 18px;"><span style="font-weight: 800;">Name: </span>Pawan Kumar</h1>
+  </div>
+
+  <div class="my-achivement">
+    <img src="img/trophy.svg" alt=""> <h2>My Achivement</h2> 
+<button>Test Ranker <a href="#" class="badge badge-success">0</a></button>
+<button>10 Day Striker <a href="#" class="badge badge-success">0</a></button>
+<button>Quiz King <a href="#" class="badge badge-success">0</a></button>
+<button>Best Zone Survivor <a href="#" class="badge badge-success">0</a></button>
+<button>Leader-Board Hunter <a href="#" class="badge badge-success">0</a></button>
+  </div>
+
+  <div id="box" class="today">
+      <h1 style="color: rgb(0, 0, 0); font-size: 18px; margin-left: 10px; padding-top: 10px;">Daily Routine</h1>
+      <h2 style="color: #251515;">Daily Target &#10004;</h2>
+      <h2 style="color: green;">FCC Group Study &#10004;</h2
+      <span> </span>
+      <h2  style="color: green;">Group Discuss &#10004;</h2>
+      <h2 style="color: #251515;">Full Attendence &#10004; </h2>
+  </div>
+
+  <div id="box" class="sevenday-section">
+    <h1 style="color: rgb(0, 78, 78); font-size: 18px; margin-left: 10px; padding-top: 10px;">Previous  14 Day Activity</h1>
+    <h2 style="color: #6d0000;">Attendence</h2>
+    <h2 style="color: rgb(0, 0, 0)(0, 0, 0);">Over All <span style="color: rgb(0, 0, 0);">"Bad"</span></h2>
+
+    <h2 style="color: #6d0000;">My Score</h2>
+    <h2 style="color: rgb(0, 0, 0);">180</h2>
+    <h2 style="color: rgb(109, 0, 0);">Number of total Break + Launch</h2>
+    <h2 style="color: rgb(0, 0, 0);">18<strong> [ 54 Minute ]</strong></h2>
+  </div>
+
+  <div id="box" class="sevenday-section">
+    <h1 style="color: rgb(0, 78, 78); font-size: 18px; margin-left: 10px; padding-top: 10px;">Zone</h1>
+    <h2 style="color: rgb(0, 0, 0);">Pawan Kumar Zone :</h2>
+    <h2 style="color: rgb(145, 0, 0)(0, 0, 0);"><a href="#" class="badge badge-success">Red Zone</a></h2>
+
+    <h2 style="color: rgb(109, 0, 0);">Achive Badge <a href="#" class="badge badge-success">Green Zone Survivor</a></h2>
+    <h2 style="color: rgb(0, 0, 0);">Complete Task ></h2>
+  </div>
+
+  <div id="box" class="sevenday-section">
+    <h1 style="color: rgb(0, 78, 13); font-size: 18px; margin-left: 10px; padding-top: 10px;">Leader Board</h1>
+    <h2 style="color: rgb(0, 0, 0);">My Position</h2>
+    <h2 style="color: rgb(145, 0, 0)(0, 0, 0);">All Over | <a href="#" class="badge badge-primary">6</a></h2>
+
+    <h2 style="color: rgb(109, 0, 0);">in My Class | <a href="#" class="badge badge-success">6</a></h2>
+    <h2 style="color: rgb(0, 0, 0);"> Achive Badge<a href="#" class="badge badge-dark"> Leader-Board Hunter</a>
+    </h2>
+  </div>
+
+    
+  <div style="padding-bottom: 1500px;"></div>
+<!-- Include footer partial -->
+
+</body>
+</html>
+
+
+        
+
+<div class="button-nav">
+  <!-- <img src="img/fcclogo.png" alt="" style="height: 25px;"> -->
+  <a href="/" ><i class="fa-solid fa-house" style="margin-left: 30px; color: #ffffff; margin-left: 5px;"></i>Home</a>
+  <a href="/zone" style="color: #ffffff; "><i class="fa-solid fa-location-dot"  style="color: #ffffff; margin-right: 5px;"></i>Zone </a>
+  <a href="/learn" style="color: #ffffff; "><i class="fa-solid fa-book"  style="color: #ffffff; margin-right: 5px;"></i> Learn</a>
+  <a href="/myprofile" style="color: #ffffff; "><i class="fa-solid fa-user"  style="color: #ffffff; margin-right: 5px;"> Me</i> </a>
+  </div>
+
+</body>
+
+<script>
+
+// var password;
+// var pass1="arjun@1";
+// password=prompt('Enter Password');
+// if (password==pass1)
+// alert('Correct password, click OK to view Data.');
+// else
+// {
+// window.location="http://localhost:5500/arjun";
+// }
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-nvVh8w+Ttp6aDrZSmVsbuorF6/KJemLg6usM9X1AjoDZhI3RizL1W0S2TJC3e8DH" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/90e7e642fb.js" crossorigin="anonymous"></script>
+<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</html>
