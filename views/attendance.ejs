@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance System</title>
+    <style>
+        #cameraContainer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        #cameraView {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
     <h1>Attendence Here with Mobile Camera</h1>
@@ -13,17 +32,18 @@
         <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
     </form>
 
-    <p>
-        Back camera update
-        pop-up aupdate
-    </p>
+    <div id="cameraContainer">
+        <video id="cameraView" playsinline></video>
+    </div>
 
     <script>
         function openCamera() {
             const qrDataInput = document.getElementById('qrData');
             const submitBtn = document.getElementById('submitBtn');
+            const cameraContainer = document.getElementById('cameraContainer');
+            const cameraView = document.getElementById('cameraView');
             
-            // Browser ke back camera ko open karna
+            // Pop-up window mein camera open karna
             navigator.mediaDevices.enumerateDevices()
             .then(function(devices) {
                 let backCameraId;
@@ -36,19 +56,17 @@
                 if (backCameraId) {
                     navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: backCameraId } } })
                     .then(function (stream) {
-                        const video = document.createElement('video');
-                        document.body.appendChild(video);
-                        video.srcObject = stream;
-                        video.setAttribute('playsinline', true); // iOS support
-                        video.play();
+                        cameraView.srcObject = stream;
+                        cameraContainer.style.display = 'block'; // Pop-up window ko dikhana
+                        cameraView.play();
 
                         // QR code scan karne ka logic
-                        const qrScanner = new Instascan.Scanner({ video: video });
+                        const qrScanner = new Instascan.Scanner({ video: cameraView });
                         qrScanner.addListener('scan', function (content) {
                             qrDataInput.value = content;
                             submitBtn.style.display = 'block'; // Attendance submit button ko dikhana
                             qrScanner.stop(); // QR code mil jaane par camera band karna
-                            document.body.removeChild(video); // Video element remove karna
+                            cameraContainer.style.display = 'none'; // Pop-up window ko chhupana
                         });
                         qrScanner.start();
                     })
