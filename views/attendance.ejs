@@ -7,50 +7,68 @@
 </head>
 <body>
     <h1>Attendence Here with Mobile Camera</h1>
-    <form action="/scan" method="POST">
+    <form id="attendanceForm" action="/scan" method="POST">
         <input type="text" id="qrData" name="qrData" placeholder="Scan QR Code Here">
         <button type="button" onclick="openCamera()">Open Camera</button>
         <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
     </form>
-<p>
-    Mobile back camera open Update-Submit button
-</p>
+
+    <p>
+        Back camera update
+        pop-up aupdate
+    </p>
+
     <script>
         function openCamera() {
             const qrDataInput = document.getElementById('qrData');
             const submitBtn = document.getElementById('submitBtn');
             
-            // Browser ke mobile camera ko open karna
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
-            .then(function (stream) {
-                const video = document.createElement('video');
-                document.body.appendChild(video);
-                video.srcObject = stream;
-                video.setAttribute('playsinline', true); // iOS support
-                video.play();
-
-                // QR code scan karne ka logic
-                const qrScanner = new Instascan.Scanner({ video: video });
-                qrScanner.addListener('scan', function (content) {
-                    qrDataInput.value = content;
-                    submitBtn.style.display = 'block'; // Attendance submit button ko dikhana
-                    qrScanner.stop(); // QR code mil jaane par camera band karna
-                    document.body.removeChild(video); // Video element remove karna
-                });
-                Instascan.Camera.getCameras().then(function (cameras) {
-                    if (cameras.length > 0) {
-                        qrScanner.start(cameras[0]); // Pehle wale camera ka istemal karna
-                    } else {
-                        console.error('No cameras found.');
+            // Browser ke back camera ko open karna
+            navigator.mediaDevices.enumerateDevices()
+            .then(function(devices) {
+                let backCameraId;
+                devices.forEach(function(device) {
+                    if (device.kind === 'videoinput' && device.label.includes('back')) {
+                        backCameraId = device.deviceId;
                     }
-                }).catch(function (e) {
-                    console.error(e);
                 });
+
+                if (backCameraId) {
+                    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: backCameraId } } })
+                    .then(function (stream) {
+                        const video = document.createElement('video');
+                        document.body.appendChild(video);
+                        video.srcObject = stream;
+                        video.setAttribute('playsinline', true); // iOS support
+                        video.play();
+
+                        // QR code scan karne ka logic
+                        const qrScanner = new Instascan.Scanner({ video: video });
+                        qrScanner.addListener('scan', function (content) {
+                            qrDataInput.value = content;
+                            submitBtn.style.display = 'block'; // Attendance submit button ko dikhana
+                            qrScanner.stop(); // QR code mil jaane par camera band karna
+                            document.body.removeChild(video); // Video element remove karna
+                        });
+                        qrScanner.start();
+                    })
+                    .catch(function (err) {
+                        console.error('Error accessing camera:', err);
+                    });
+                } else {
+                    console.error('Back camera not found.');
+                }
             })
-            .catch(function (err) {
-                console.error('Error accessing camera:', err);
+            .catch(function(err) {
+                console.error('Error enumerating devices:', err);
             });
         }
+
+        // Submit button click hone par pop-up notification show karna
+        document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Attendance successfully marked!');
+        });
     </script>
     
     <!-- Instascan QR code scanner library -->
