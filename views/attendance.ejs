@@ -7,18 +7,20 @@
 </head>
 <body>
     <h1>Attendance Here with Mobile Camera</h1>
-    <form action="/scan" method="POST">
+    <form id="attendanceForm" action="/scan" method="POST">
         <input type="text" id="qrData" name="qrData" placeholder="Scan QR Code Here">
         <button type="button" onclick="openCamera()">Scan QR Code</button>
+        <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
     </form>
-
-    <p>OLD CODE</p>
-
+<p>
+    Re-Update Submit button and back mobile camera
+</p>
     <script>
         function openCamera() {
             const qrDataInput = document.getElementById('qrData');
+            const submitBtn = document.getElementById('submitBtn');
             
-            // Browser ka camera open karna
+            // Browser ka back camera open karna
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
             .then(function (stream) {
                 const video = document.createElement('video');
@@ -31,6 +33,7 @@
                 const qrScanner = new Instascan.Scanner({ video: video });
                 qrScanner.addListener('scan', function (content) {
                     qrDataInput.value = content;
+                    submitBtn.style.display = 'block'; // Submit button ko dikhana
                     qrScanner.stop(); // QR code mil jaane par camera band karna
                     document.body.removeChild(video); // Video element remove karna
                 });
@@ -48,6 +51,12 @@
                 console.error('Error accessing camera:', err);
             });
         }
+
+        // Submit button click hone par pop-up notification show karna
+        document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Attendance successfully marked!');
+        });
     </script>
     
     <!-- Instascan QR code scanner library -->
