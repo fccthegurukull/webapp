@@ -30,7 +30,7 @@
     </form>
 
     <p>
-        Pop-up update "Camera Mirror error solve" (Re-check)
+        Pop-up update "Camera Mirror error solve" (MINI Change)
 
     </p>
     <div id="cameraContainer">
@@ -55,7 +55,7 @@
                 });
 
                 if (backCameraId) {
-                    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: backCameraId } } })
+                    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: backCameraId || undefined } } })
                     .then(function (stream) {
                         cameraView.srcObject = stream;
                         cameraContainer.style.display = 'block'; // Pop-up window ko dikhana
