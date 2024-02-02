@@ -1,21 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance System</title>
-</head>
-<body>
-    <h1>Attendence Here with Mobile Camera</h1>
-    <form action="/scan" method="POST">
-        <input type="text" name="qrData" placeholder="Scan QR Code Here">
-        <button type="submit">Mark Attendance</button>
-    </form>
-</body>
-</html> -->
-
-<!-- // Camera Feature Adding LEVEL UP QR CODE SCAn -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,15 +9,17 @@
     <h1>Attendence Here with Mobile Camera</h1>
     <form action="/scan" method="POST">
         <input type="text" id="qrData" name="qrData" placeholder="Scan QR Code Here">
-        <button type="button" onclick="openCamera()">Scan QR Code</button>
+        <button type="button" onclick="openCamera()">Open Camera</button>
+        <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
     </form>
 
     <script>
         function openCamera() {
             const qrDataInput = document.getElementById('qrData');
+            const submitBtn = document.getElementById('submitBtn');
             
-            // Browser ka camera open karna
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            // Browser ke mobile camera ko open karna
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
             .then(function (stream) {
                 const video = document.createElement('video');
                 document.body.appendChild(video);
@@ -47,6 +31,7 @@
                 const qrScanner = new Instascan.Scanner({ video: video });
                 qrScanner.addListener('scan', function (content) {
                     qrDataInput.value = content;
+                    submitBtn.style.display = 'block'; // Attendance submit button ko dikhana
                     qrScanner.stop(); // QR code mil jaane par camera band karna
                     document.body.removeChild(video); // Video element remove karna
                 });
