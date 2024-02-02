@@ -4,7 +4,10 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const initializePassport = require("./passport-config");
 const flash = require("express-flash");
-const session = require('express-session'); // Declare session only once
+const session = require('express-session'); // Declare session 
+const qr = require('qr-image');
+const fs = require('fs');
+
 const methodOverride = require("method-override");
 const logger = require('./logger');
 
@@ -272,6 +275,57 @@ app.get('/guest2', (req, res) => {
   res.render('guests/guest2/guest2', { message: 'Hello, Guest 2!' });
 });
 
+// QR Code Scan System Applying CHATGPT
+
+
+// app.post('/scan', (req, res) => {
+//   const qrData = req.body.qrData;
+//   const qrCode = qr.image(qrData, { type: 'png' });
+//   const fileStream = fs.createWriteStream('attendance_data.txt', { flags: 'a' });
+
+//   qrCode.pipe(fileStream);
+//   fileStream.on('finish', () => {
+//       console.log('QR code data saved to attendance_data.txt');
+//       res.send('Attendance marked successfully!');
+//   });
+// });
+
+// 1st failde esme PNG SAVE ho rha tha jab ki muje sirf ID chahiye tha
+
+// Function to get current time and date
+function getCurrentTimeAndDate() {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  const date = now.toLocaleDateString('en-US');
+  return `${hours}:${minutes}:${seconds} , ${date}`;
+}
+
+app.post('/scan', (req, res) => {
+  const qrData = req.body.qrData;
+  const currentTimeAndDate = getCurrentTimeAndDate();
+
+  const fileStream = fs.createWriteStream('attendance_data.txt', { flags: 'a' });
+  fileStream.write(`${qrData} - ${currentTimeAndDate}\n`); // Write QR code data and time/date to file
+  fileStream.end();
+
+  console.log('QR code data saved to attendance_data.txt');
+  res.send('Attendance marked successfully!');
+});
+
+// Level UPing
+
+app.get('/attendance', (req, res) => {
+  res.render('attendance');
+});
+
+//  qr camera feature adding --
+
+
+
+
+// QR Code Scan System Applying CHATGPT1 END
 
 // Start the server
 app.listen(port, () => {

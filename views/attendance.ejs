@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+</head>
+<body>
+    <h1>Attendence Here with Mobile Camera</h1>
+    <form action="/scan" method="POST">
+        <input type="text" name="qrData" placeholder="Scan QR Code Here">
+        <button type="submit">Mark Attendance</button>
+    </form>
+</body>
+</html> -->
+
+<!-- // Camera Feature Adding LEVEL UP QR CODE SCAn -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+</head>
+<body>
+    <h1>Attendence Here with Mobile Camera</h1>
+    <form action="/scan" method="POST">
+        <input type="text" id="qrData" name="qrData" placeholder="Scan QR Code Here">
+        <button type="button" onclick="openCamera()">Scan QR Code</button>
+    </form>
+
+    <script>
+        function openCamera() {
+            const qrDataInput = document.getElementById('qrData');
+            
+            // Browser ka camera open karna
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(function (stream) {
+                const video = document.createElement('video');
+                document.body.appendChild(video);
+                video.srcObject = stream;
+                video.setAttribute('playsinline', true); // iOS support
+                video.play();
+
+                // QR code scan karne ka logic
+                const qrScanner = new Instascan.Scanner({ video: video });
+                qrScanner.addListener('scan', function (content) {
+                    qrDataInput.value = content;
+                    qrScanner.stop(); // QR code mil jaane par camera band karna
+                    document.body.removeChild(video); // Video element remove karna
+                });
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                        qrScanner.start(cameras[0]); // Pehle wale camera ka istemal karna
+                    } else {
+                        console.error('No cameras found.');
+                    }
+                }).catch(function (e) {
+                    console.error(e);
+                });
+            })
+            .catch(function (err) {
+                console.error('Error accessing camera:', err);
+            });
+        }
+    </script>
+    
+    <!-- Instascan QR code scanner library -->
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+</body>
+</html>
