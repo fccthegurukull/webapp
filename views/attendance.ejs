@@ -9,17 +9,26 @@
     <h1>Attendance Here with Mobile Camera</h1>
     <form id="attendanceForm" action="/scan" method="POST">
         <input type="text" id="qrData" name="qrData" placeholder="Scan QR Code Here">
-        <button type="button" onclick="openCamera()">Scan QR Code</button>
+        <button type="button" id="scanBtn" onclick="openCamera()">Scan QR Code</button>
         <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
     </form>
-<p>
-    Re-Update Submit button and back mobile camera
-</p>
+
+    <div id="notification" style="display: none;"></div>
+
+    <div id="attendanceData" style="margin-top: 20px;"></div>
+
     <script>
         function openCamera() {
             const qrDataInput = document.getElementById('qrData');
+            const scanBtn = document.getElementById('scanBtn');
             const submitBtn = document.getElementById('submitBtn');
-            
+
+            // Agar input field mein text add kiya gaya hai to scan button hide karo aur submit button dikhao
+            if (qrDataInput.value.trim().length > 0) {
+                scanBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            }
+
             // Browser ka back camera open karna
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
             .then(function (stream) {
@@ -33,6 +42,7 @@
                 const qrScanner = new Instascan.Scanner({ video: video });
                 qrScanner.addListener('scan', function (content) {
                     qrDataInput.value = content;
+                    scanBtn.style.display = 'none'; // Scan button ko hide karna
                     submitBtn.style.display = 'block'; // Submit button ko dikhana
                     qrScanner.stop(); // QR code mil jaane par camera band karna
                     document.body.removeChild(video); // Video element remove karna
@@ -55,7 +65,23 @@
         // Submit button click hone par pop-up notification show karna
         document.getElementById('attendanceForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            alert('Attendance successfully marked!');
+            const qrDataInput = document.getElementById('qrData');
+            const notification = document.getElementById('notification');
+            const attendanceData = document.getElementById('attendanceData');
+
+            // Attendence pop-up/notification dikhana
+            notification.innerText = 'Attendance successfully marked!';
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000); // 3 seconds ke baad pop-up ko hide karna
+
+            // Input field clear karna
+            qrDataInput.value = '';
+
+            // Attendence data ko dikhaana
+            const attendanceText = qrDataInput.value + '<br>';
+            attendanceData.innerHTML += attendanceText;
         });
     </script>
     
