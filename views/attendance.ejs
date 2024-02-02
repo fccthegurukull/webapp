@@ -4,87 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance System</title>
-    <style>
-        #cameraContainer {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-        }
-
-        #cameraView {
-            width: 100%;
-            height: 100%;
-            transform: scaleX(-1); /* Mirror effect hatane ke liye */
-        }
-    </style>
 </head>
 <body>
-    <h1>Attendence Here with Mobile Camera</h1>
-    <form id="attendanceForm" action="/scan" method="POST">
+    <h1>Attendance Here with Mobile Camera</h1>
+    <form action="/scan" method="POST">
         <input type="text" id="qrData" name="qrData" placeholder="Scan QR Code Here">
-        <button type="button" onclick="openCamera()">Open Camera</button>
-        <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
+        <button type="button" onclick="openCamera()">Scan QR Code</button>
     </form>
 
-    <div id="cameraContainer">
-        <video id="cameraView" playsinline></video>
-    </div>
+    <p>OLD CODE</p>
 
     <script>
         function openCamera() {
             const qrDataInput = document.getElementById('qrData');
-            const submitBtn = document.getElementById('submitBtn');
-            const cameraContainer = document.getElementById('cameraContainer');
-            const cameraView = document.getElementById('cameraView');
             
-            // Pop-up window mein front camera open karna
-            navigator.mediaDevices.enumerateDevices()
-            .then(function(devices) {
-                let frontCameraId;
-                devices.forEach(function(device) {
-                    if (device.kind === 'videoinput' && device.label.includes('front')) {
-                        frontCameraId = device.deviceId;
-                    }
+            // Browser ka camera open karna
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(function (stream) {
+                const video = document.createElement('video');
+                document.body.appendChild(video);
+                video.srcObject = stream;
+                video.setAttribute('playsinline', true); // iOS support
+                video.play();
+
+                // QR code scan karne ka logic
+                const qrScanner = new Instascan.Scanner({ video: video });
+                qrScanner.addListener('scan', function (content) {
+                    qrDataInput.value = content;
+                    qrScanner.stop(); // QR code mil jaane par camera band karna
+                    document.body.removeChild(video); // Video element remove karna
                 });
-
-                if (frontCameraId) {
-                    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: frontCameraId } } })
-                    .then(function (stream) {
-                        cameraView.srcObject = stream;
-                        cameraContainer.style.display = 'block'; // Pop-up window ko dikhana
-                        cameraView.play();
-
-                        // QR code scan karne ka logic
-                        const qrScanner = new Instascan.Scanner({ video: cameraView });
-                        qrScanner.addListener('scan', function (content) {
-                            qrDataInput.value = content;
-                            submitBtn.style.display = 'block'; // Attendance submit button ko dikhana
-                            qrScanner.stop(); // QR code mil jaane par camera band karna
-                            cameraContainer.style.display = 'none'; // Pop-up window ko chhupana
-                        });
-                        qrScanner.start();
-                    })
-                    .catch(function (err) {
-                        console.error('Error accessing camera:', err);
-                    });
-                } else {
-                    console.error('Front camera not found.');
-                }
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                        qrScanner.start(cameras[0]); // Pehle wale camera ka istemal karna
+                    } else {
+                        console.error('No cameras found.');
+                    }
+                }).catch(function (e) {
+                    console.error(e);
+                });
             })
-            .catch(function(err) {
-                console.error('Error enumerating devices:', err);
+            .catch(function (err) {
+                console.error('Error accessing camera:', err);
             });
         }
-
-        // Submit button click hone par pop-up notification show karna
-        document.getElementById('attendanceForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Attendance successfully marked!');
-        });
     </script>
     
     <!-- Instascan QR code scanner library -->
