@@ -18,7 +18,6 @@
         #cameraView {
             width: 100%;
             height: 100%;
-            transform: rotateY(180deg); /* Camera output ko seedha karna */
         }
     </style>
 </head>
@@ -29,9 +28,7 @@
         <button type="button" onclick="openCamera()">Open Camera</button>
         <button type="submit" id="submitBtn" style="display: none;">Submit Attendance</button>
     </form>
-<p>
-    Re-solve same 
-</p>
+
     <div id="cameraContainer">
         <video id="cameraView" playsinline></video>
     </div>
@@ -43,18 +40,18 @@
             const cameraContainer = document.getElementById('cameraContainer');
             const cameraView = document.getElementById('cameraView');
             
-            // Pop-up window mein camera open karna
+            // Pop-up window mein front camera open karna
             navigator.mediaDevices.enumerateDevices()
             .then(function(devices) {
-                let backCameraId;
+                let frontCameraId;
                 devices.forEach(function(device) {
-                    if (device.kind === 'videoinput' && device.label.includes('back')) {
-                        backCameraId = device.deviceId;
+                    if (device.kind === 'videoinput' && device.label.includes('front')) {
+                        frontCameraId = device.deviceId;
                     }
                 });
 
-                if (backCameraId) {
-                    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: backCameraId } } })
+                if (frontCameraId) {
+                    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: frontCameraId } } })
                     .then(function (stream) {
                         cameraView.srcObject = stream;
                         cameraContainer.style.display = 'block'; // Pop-up window ko dikhana
@@ -74,7 +71,7 @@
                         console.error('Error accessing camera:', err);
                     });
                 } else {
-                    console.error('Back camera not found.');
+                    console.error('Front camera not found.');
                 }
             })
             .catch(function(err) {
